@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UsesCasesSearchItemById should return result item object when call getItemByI 1`] = `
+Object {
+  "author": Object {
+    "lastName": "Matheu",
+    "name": "Victor",
+  },
+  "item": Object {
+    "condition": "new",
+    "description": "description",
+    "freeShipping": false,
+    "id": "123231",
+    "picture": "no ttiene",
+    "price": Object {
+      "amount": 1009,
+      "currency": "USD",
+      "decimals": 0,
+    },
+    "soldQuantity": 0,
+    "title": "Test",
+  },
+}
+`;
