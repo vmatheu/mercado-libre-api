@@ -22,7 +22,6 @@ export class ItemController {
   async findByQuerySearch(
     @Query() request: QueryInputModel,
   ): Promise<SearchOutputModel> {
-    console.log(request.q);
     const result = await this.usesCasesSearchItemsByQuery.findByQuerySearch(
       request,
     );

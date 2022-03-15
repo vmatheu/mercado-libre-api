@@ -24,10 +24,14 @@ export class UsesCasesSearchItemsByQuery {
   async findByQuerySearch(
     request: QueryInputModel,
   ): Promise<SearchOutputModel> {
+    this.logger.debug(`call findByQuerySearch=${request.q}`);
+
     const result = await this.itemsResource.findByQuerySearch(request.q);
     const categoryMap: IHash = {};
     const items = result.map(transformInputSearchToItems(categoryMap));
     const categories = Object.keys(categoryMap).map((key) => key);
+
+    this.logger.debug(`result findByQuerySearch count=${items.length}`);
 
     return {
       author: {
