@@ -1,6 +1,19 @@
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Esta api busco productos desde la api de mercado libre.
+
+Se puede buscar por frase:
+
+```bash
+localhost:3001/api/items/q={frase para buscar}
+```
+
+Se puede buscar por Id:
+
+```bash
+localhost:3001/api/items/{frase para buscar}
+```
+
 
 ## Installation
 
