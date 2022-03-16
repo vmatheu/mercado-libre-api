@@ -1,5 +1,5 @@
-import { ItemInputModel } from '../input-models/ItemInputModel';
+import { ItemWithCategoriesInputModel } from '../input-models/ItemsWithCategoriesInputModel ';
 
 export interface ItemsResource {
-  findByQuerySearch: (query: string) => Promise<ItemInputModel[]>;
+  findByQuerySearch: (query: string) => Promise<ItemWithCategoriesInputModel>;
 }

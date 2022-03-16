@@ -1,37 +1,34 @@
-import { Injectable } from '@nestjs/common';
-import axios from 'axios';
-import { ItemsResource } from 'src/items/interfaces/gateways/ItemsResource';
-import { ItemInputModel } from 'src/items/interfaces/input-models/ItemInputModel';
+import { Injectable } from "@nestjs/common";
+import axios from "axios";
+import { ItemsResource } from "src/items/interfaces/gateways/ItemsResource";
+import { ItemInputModel } from "src/items/interfaces/input-models/ItemInputModel";
+import { ItemWithCategoriesInputModel } from "src/items/interfaces/input-models/ItemsWithCategoriesInputModel ";
+import { buildItemFromResource } from "./parsers";
 
 @Injectable()
 export class ItemsResourcesEndpoint implements ItemsResource {
-  async findByQuerySearch(query: string): Promise<ItemInputModel[]> {
+  async findByQuerySearch(
+    query: string
+  ): Promise<ItemWithCategoriesInputModel> {
     try {
       const response = await axios.get(
-        'https://api.mercadolibre.com/sites/MLA/search?q=',
+        "https://api.mercadolibre.com/sites/MLA/search?q=",
         {
           params: {
             q: query,
           },
-        },
+        }
       );
 
       const results: Array<any> = response.data.results;
-      return results.map(
-        (result) =>
-          ({
-            id: result.id,
-            title: result.title,
-            price: result.price,
-            currencyId: result.currency_id,
-            condition: result.condition,
-            picture: result.thumbnail,
-            freeShipping: result.shipping.free_shipping,
-            category: result.category_id,
-          } as ItemInputModel),
-      );
+      return {
+        items: results.map((result) => buildItemFromResource(result)),
+        categories: response.data.filters.lenght > 0 ?
+          response.data.filters[0].values[0].path_from_root.map(category => category.name): []
+      };
     } catch (err) {
       console.error(err);
     }
   }
 }
+

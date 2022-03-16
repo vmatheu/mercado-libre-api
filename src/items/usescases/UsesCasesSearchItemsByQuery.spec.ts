@@ -16,7 +16,6 @@ describe('UsesCasesSearchItemById', () => {
     condition: 'new',
     picture: 'no ttiene',
     freeShipping: false,
-    category: 'Mejor',
   };
 
   beforeEach(async () => {
@@ -24,7 +23,10 @@ describe('UsesCasesSearchItemById', () => {
   });
 
   it('should return result item object when call getItemByI', async () => {
-    itemsResourceMock.findByQuerySearch.mockResolvedValue([itemMock]);
+    itemsResourceMock.findByQuerySearch.mockResolvedValue({
+      items: [itemMock],
+      categories: ['categoria']
+    });
 
     const result = await new UsesCasesSearchItemsByQuery(
       itemsResourceMock,
