@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { mock } from 'jest-mock-extended';
-import { UsesCasesSearchItemById } from '../../usescases/UsesCasesSearchItemById';
-import { UsesCasesSearchItemsByQuery } from '../../usescases/UsesCasesSearchItemsByQuery';
+import { UseCaseSearchItemById } from '../../usecases/UseCaseSearchItemById';
+import { UseCaseSearchItemsByQuery } from '../../usecases/UseCaseSearchItemsByQuery';
 import { LoggerCustom } from '../core/Logger';
 import { DescriptionItemResourceEndpoint } from '../endpoints/DescriptionItemResourceEndpoint';
 import { ItemResourceEndpoint } from '../endpoints/ItemResourceEndpoint';
@@ -15,18 +15,18 @@ describe('AppController', () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [ItemController],
       providers: [
-        UsesCasesSearchItemById,
-        UsesCasesSearchItemsByQuery,
+        UseCaseSearchItemById,
+        UseCaseSearchItemsByQuery,
         ItemResourceEndpoint,
         DescriptionItemResourceEndpoint,
         ItemsResourcesEndpoint,
         LoggerCustom,
       ],
     })
-      .overrideProvider(UsesCasesSearchItemById)
-      .useValue(mock<UsesCasesSearchItemById>())
-      .overrideProvider(UsesCasesSearchItemsByQuery)
-      .useValue(mock<UsesCasesSearchItemsByQuery>())
+      .overrideProvider(UseCaseSearchItemById)
+      .useValue(mock<UseCaseSearchItemById>())
+      .overrideProvider(UseCaseSearchItemsByQuery)
+      .useValue(mock<UseCaseSearchItemsByQuery>())
       .compile();
 
     appController = app.get<ItemController>(ItemController);

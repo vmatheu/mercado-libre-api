@@ -1,15 +1,15 @@
-import { ItemResource } from '../interfaces/gateways/ItemResource';
-import { UsesCasesSearchItemById } from './UsesCasesSearchItemById';
+import { UseCaseSearchItemById } from './UseCaseSearchItemById';
 import { mock, mockReset } from 'jest-mock-extended';
-import { DescriptionItemResource } from '../interfaces/gateways/DescriptionItemResource';
 import { ItemWithSoldInputModel } from '../interfaces/input-models/ItemWithSoldInputModel';
 import { LoggerCustom } from '../infra/core/Logger';
-import { CategoryItemResource } from '../interfaces/gateways/CategoryItemResource ';
+import { ItemResourceEndpoint } from '../infra/endpoints/ItemResourceEndpoint';
+import { DescriptionItemResourceEndpoint } from '../infra/endpoints/DescriptionItemResourceEndpoint';
+import { CategoryItemResourceEndpoint } from '../infra/endpoints/CategoryItemResourceEndpoint';
 
-describe('UsesCasesSearchItemById', () => {
-  const itemResourceMock = mock<ItemResource>();
-  const descriptionItemResourceMock = mock<DescriptionItemResource>();
-  const categoryItemResourceMock = mock<CategoryItemResource>();
+describe('UseCaseSearchItemById', () => {
+  const itemResourceMock = mock<ItemResourceEndpoint>();
+  const descriptionItemResourceMock = mock<DescriptionItemResourceEndpoint>();
+  const categoryItemResourceMock = mock<CategoryItemResourceEndpoint>();
 
   const loggerMock = mock<LoggerCustom>();
 
@@ -35,7 +35,7 @@ describe('UsesCasesSearchItemById', () => {
     itemResourceMock.getById.mockResolvedValue(itemMock);
     descriptionItemResourceMock.getDescription.mockResolvedValue('description');
 
-    const result = await new UsesCasesSearchItemById(
+    const result = await new UseCaseSearchItemById(
       itemResourceMock,
       descriptionItemResourceMock,
       categoryItemResourceMock,
@@ -53,7 +53,7 @@ describe('UsesCasesSearchItemById', () => {
     itemResourceMock.getById.mockResolvedValue(newItemMock);
     descriptionItemResourceMock.getDescription.mockResolvedValue('description');
 
-    const result = await new UsesCasesSearchItemById(
+    const result = await new UseCaseSearchItemById(
       itemResourceMock,
       descriptionItemResourceMock,
       categoryItemResourceMock,

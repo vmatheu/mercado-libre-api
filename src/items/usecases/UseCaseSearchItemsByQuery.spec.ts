@@ -1,11 +1,11 @@
-import { ItemsResource } from '../interfaces/gateways/ItemsResource';
-import { UsesCasesSearchItemsByQuery } from './UsesCasesSearchItemsByQuery';
+import { UseCaseSearchItemsByQuery } from './UseCaseSearchItemsByQuery';
 import { mock, mockReset } from 'jest-mock-extended';
 import { LoggerCustom } from '../infra/core/Logger';
 import { ItemInputModel } from '../interfaces/input-models/ItemInputModel';
+import { ItemsResourcesEndpoint } from '../infra/endpoints/ItemsResourcesEndpoint';
 
-describe('UsesCasesSearchItemById', () => {
-  const itemsResourceMock = mock<ItemsResource>();
+describe('UseCaseSearchItemById', () => {
+  const itemsResourceMock = mock<ItemsResourcesEndpoint>();
   const loggerMock = mock<LoggerCustom>();
 
   const itemMock: ItemInputModel = {
@@ -29,7 +29,7 @@ describe('UsesCasesSearchItemById', () => {
       categories: ['categoria']
     });
 
-    const result = await new UsesCasesSearchItemsByQuery(
+    const result = await new UseCaseSearchItemsByQuery(
       itemsResourceMock,
       loggerMock,
     ).findByQuerySearch({

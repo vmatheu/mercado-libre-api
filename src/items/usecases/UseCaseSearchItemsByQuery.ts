@@ -14,12 +14,12 @@ interface IHash {
 }
 
 @Injectable()
-export class UsesCasesSearchItemsByQuery {
+export class UseCaseSearchItemsByQuery {
   constructor(
     private readonly itemsResource: ItemsResourcesEndpoint,
     private readonly logger: LoggerCustom
   ) {
-    logger.init(UsesCasesSearchItemsByQuery.name);
+    logger.init(UseCaseSearchItemsByQuery.name);
   }
 
   async findByQuerySearch(

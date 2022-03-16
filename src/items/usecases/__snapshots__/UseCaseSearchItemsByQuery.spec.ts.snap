@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UsesCasesSearchItemById should return result item object when call getItemByI 1`] = `
+exports[`UseCaseSearchItemById should return result item object when call getItemByI 1`] = `
 Object {
   "author": Object {
     "lastName": "Matheu",

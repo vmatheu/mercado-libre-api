@@ -5,15 +5,15 @@ import { CategoryItemResourceEndpoint } from './items/infra/endpoints/CategoryIt
 import { DescriptionItemResourceEndpoint } from './items/infra/endpoints/DescriptionItemResourceEndpoint';
 import { ItemResourceEndpoint } from './items/infra/endpoints/ItemResourceEndpoint';
 import { ItemsResourcesEndpoint } from './items/infra/endpoints/ItemsResourcesEndpoint';
-import { UsesCasesSearchItemById } from './items/usescases/UsesCasesSearchItemById';
-import { UsesCasesSearchItemsByQuery } from './items/usescases/UsesCasesSearchItemsByQuery';
+import { UseCaseSearchItemById } from './items/usecases/UseCaseSearchItemById';
+import { UseCaseSearchItemsByQuery } from './items/usecases/UseCaseSearchItemsByQuery';
 
 @Module({
   imports: [],
   controllers: [ItemController],
   providers: [
-    UsesCasesSearchItemsByQuery,
-    UsesCasesSearchItemById,
+    UseCaseSearchItemsByQuery,
+    UseCaseSearchItemById,
     ItemResourceEndpoint,
     DescriptionItemResourceEndpoint,
     ItemsResourcesEndpoint,
