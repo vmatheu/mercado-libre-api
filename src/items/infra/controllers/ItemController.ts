@@ -1,11 +1,13 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseFilters } from '@nestjs/common';
 import { QueryInputModel } from '../../interfaces/input-models/QueryInputModel';
 import { ItemByIdOutputModel } from '../../interfaces/output-models/ItemByIdOutputModel';
 import { SearchOutputModel } from '../../interfaces/output-models/SearchOutputModel';
 import { UsesCasesSearchItemById } from '../../usescases/UsesCasesSearchItemById';
 import { UsesCasesSearchItemsByQuery } from '../../usescases/UsesCasesSearchItemsByQuery';
+import { HttpExceptionFilter } from './HttpExceptionFilter';
 
 @Controller('api/items')
+@UseFilters(new HttpExceptionFilter())
 export class ItemController {
   constructor(
     private readonly usesCasesSearchItemsByQuery: UsesCasesSearchItemsByQuery,
