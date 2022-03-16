@@ -18,7 +18,7 @@ Object {
       "price": Object {
         "amount": 1009,
         "currency": "USD",
-        "decimals": 1009,
+        "decimals": 0,
       },
       "title": "Test",
     },

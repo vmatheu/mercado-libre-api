@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { buildItem } from '../domain/Item';
 import { LoggerCustom } from '../infra/core/Logger';
 import { ItemsResourcesEndpoint } from '../infra/endpoints/ItemsResourcesEndpoint';
 import { ItemInputModel } from '../interfaces/input-models/ItemInputModel';
@@ -28,7 +29,7 @@ export class UsesCasesSearchItemsByQuery {
 
     const result = await this.itemsResource.findByQuerySearch(request.q);
     const categoryMap: IHash = {};
-    const items = result.map(transformInputSearchToItems(categoryMap));
+    const items = result.slice(0,4).map(transformInputSearchToItems(categoryMap));
     const categories = Object.keys(categoryMap).map((key) => key);
 
     this.logger.debug(`result findByQuerySearch count=${items.length}`);
@@ -49,17 +50,6 @@ function transformInputSearchToItems(
 ): (value: ItemInputModel, index: number, array: ItemInputModel[]) => Item {
   return (item) => {
     categoryMap[item.category] = 1;
-    return {
-      id: item.id,
-      title: item.title,
-      price: {
-        currency: item.currencyId,
-        amount: item.price,
-        decimals: item.price,
-      },
-      condition: item.condition,
-      picture: item.picture,
-      freeShipping: item.freeShipping,
-    };
+    return buildItem(item);
   };
 }
