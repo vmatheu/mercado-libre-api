@@ -6,4 +6,5 @@ export interface ItemInputModel {
   condition: string;
   picture: string;
   freeShipping: boolean;
+  categoryId: string
 }

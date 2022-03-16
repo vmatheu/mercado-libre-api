@@ -4,10 +4,13 @@ import { mock, mockReset } from 'jest-mock-extended';
 import { DescriptionItemResource } from '../interfaces/gateways/DescriptionItemResource';
 import { ItemWithSoldInputModel } from '../interfaces/input-models/ItemWithSoldInputModel';
 import { LoggerCustom } from '../infra/core/Logger';
+import { CategoryItemResource } from '../interfaces/gateways/CategoryItemResource ';
 
 describe('UsesCasesSearchItemById', () => {
   const itemResourceMock = mock<ItemResource>();
   const descriptionItemResourceMock = mock<DescriptionItemResource>();
+  const categoryItemResourceMock = mock<CategoryItemResource>();
+
   const loggerMock = mock<LoggerCustom>();
 
   const itemMock: ItemWithSoldInputModel = {
@@ -19,11 +22,13 @@ describe('UsesCasesSearchItemById', () => {
     condition: 'new',
     picture: 'no ttiene',
     freeShipping: false,
+    categoryId: 'category'
   };
 
   beforeEach(async () => {
     mockReset(itemResourceMock);
     mockReset(descriptionItemResourceMock);
+    mockReset(categoryItemResourceMock);
   });
 
   it('should return result item object when call getItemByI', async () => {
@@ -33,6 +38,7 @@ describe('UsesCasesSearchItemById', () => {
     const result = await new UsesCasesSearchItemById(
       itemResourceMock,
       descriptionItemResourceMock,
+      categoryItemResourceMock,
       loggerMock,
     ).getItemById('id');
 
@@ -50,6 +56,7 @@ describe('UsesCasesSearchItemById', () => {
     const result = await new UsesCasesSearchItemById(
       itemResourceMock,
       descriptionItemResourceMock,
+      categoryItemResourceMock,
       loggerMock,
     ).getItemById('id');
 

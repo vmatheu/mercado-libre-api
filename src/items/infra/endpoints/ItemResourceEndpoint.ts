@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { ItemResource } from 'src/items/interfaces/gateways/ItemResource';
 import { ItemWithSoldInputModel } from 'src/items/interfaces/input-models/ItemWithSoldInputModel';
+import { buildItemFromResource } from './parsers';
 
 @Injectable()
 export class ItemResourceEndpoint implements ItemResource {
@@ -13,14 +14,7 @@ export class ItemResourceEndpoint implements ItemResource {
 
       const result: any = response.data;
       return {
-        id: result.id,
-        title: result.title,
-        price: result.price,
-        currencyId: result.currency_id,
-        condition: result.condition,
-        picture: result.thumbnail,
-        freeShipping: result.shipping.free_shipping,
-        category: result.category_id,
+        ...buildItemFromResource(result),
         soldQuantity: result.sold_quantity,
       } as ItemWithSoldInputModel;
     } catch (err) {

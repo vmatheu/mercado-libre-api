@@ -8,5 +8,6 @@ export const buildItemFromResource = (result): ItemInputModel => ({
     condition: result.condition,
     picture: result.thumbnail,
     freeShipping: result.shipping.free_shipping,
+    categoryId: result.category_id
   });
   

@@ -6,6 +6,7 @@ Object {
     "lastName": "Matheu",
     "name": "Victor",
   },
+  "categories": undefined,
   "item": Object {
     "condition": "new",
     "description": "description",

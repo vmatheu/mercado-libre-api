@@ -16,6 +16,7 @@ describe('UsesCasesSearchItemById', () => {
     condition: 'new',
     picture: 'no ttiene',
     freeShipping: false,
+    categoryId: 'category',
   };
 
   beforeEach(async () => {
