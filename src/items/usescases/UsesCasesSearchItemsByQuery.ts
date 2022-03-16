@@ -28,10 +28,10 @@ export class UsesCasesSearchItemsByQuery {
     this.logger.debug(`call findByQuerySearch=${request.q}`);
 
     const result = await this.itemsResource.findByQuerySearch(request.q);
-    const categoryMap: IHash = {};
     const items = result.items.slice(0, 4).map((item) => buildItem(item));
 
     this.logger.debug(`result findByQuerySearch count=${items.length}`);
+    this.logger.debug(`result findByQuerySearch categories=${result.categories}`);
 
     return {
       author: {

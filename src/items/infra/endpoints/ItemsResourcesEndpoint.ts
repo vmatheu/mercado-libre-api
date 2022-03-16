@@ -23,7 +23,7 @@ export class ItemsResourcesEndpoint implements ItemsResource {
       const results: Array<any> = response.data.results;
       return {
         items: results.map((result) => buildItemFromResource(result)),
-        categories: response.data.filters.lenght > 0 ?
+        categories: response.data.filters.length > 0 ?
           response.data.filters[0].values[0].path_from_root.map(category => category.name): []
       };
     } catch (err) {
